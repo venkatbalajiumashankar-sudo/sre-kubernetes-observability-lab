@@ -41,6 +41,12 @@ Grafana
 Alertmanager
 Node Exporter
 
+## Grafana Monitoring Dashboard
+
+The observability stack is powered by Prometheus metrics visualized in Grafana dashboards.
+
+![Grafana Dashboards](screenshots/grafana-dashboards.png)
+
 ## Incident Simulations
 
 CPU Spike Simulation  
