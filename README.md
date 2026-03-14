@@ -1,5 +1,9 @@
 # SRE Kubernetes Observability Lab
 
+## Architecture
+
+![Architecture](architecture/architecture.png)
+
 This project simulates a production SRE environment with Kubernetes,
 Prometheus monitoring, Grafana dashboards, and incident simulations.
 
@@ -58,3 +62,5 @@ Applications
 Prometheus
 ↓
 Grafana
+
+
