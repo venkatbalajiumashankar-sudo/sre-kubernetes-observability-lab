@@ -308,6 +308,170 @@ This demonstrates how SRE teams detect and investigate system issues.
 
 ---
 
+## Reliability Engineering Design
+
+This project also demonstrates core **Site Reliability Engineering (SRE) reliability practices** inspired by Google's SRE methodology.
+
+### Service Level Indicators (SLI)
+
+The following indicators are used to evaluate system health:
+
+- API / application availability
+- Pod restart rate
+- CPU utilization
+- Memory utilization
+- Request latency
+- Deployment success rate
+
+These metrics are collected through **Prometheus exporters** and visualized in **Grafana dashboards**.
+
+---
+
+### Service Level Objectives (SLO)
+
+Example reliability targets for the demo application:
+
+| Metric | Target |
+|------|------|
+| Application Availability | 99.9% |
+| Pod Restart Rate | < 1 per hour |
+| Deployment Success Rate | 100% |
+| CPU Utilization | < 80% sustained |
+
+If the system violates these thresholds, alerts or investigation workflows should be triggered.
+
+---
+
+### Error Budget Concept
+
+Using a 99.9% availability target:
+
+
+This allows teams to balance **reliability vs feature velocity**.
+
+If error budget is exhausted, new deployments should pause until reliability stabilizes.
+
+---
+
+### Monitoring Strategy
+
+The monitoring stack follows a layered observability model:
+
+| Layer | Tool |
+|-----|-----|
+| Infrastructure Metrics | Node Exporter |
+| Kubernetes Metrics | kube-state-metrics |
+| Application Metrics | Prometheus |
+| Visualization | Grafana |
+| Alerting | Alertmanager |
+
+This layered approach ensures visibility across the full stack.
+
+---
+
+### Incident Response Workflow
+
+A simulated production incident was performed as part of this lab.
+
+Example scenario: **CPU spike in application pods**
+
+Investigation workflow:
+
+1. CPU spike detected in Grafana dashboard
+2. Prometheus metrics confirmed abnormal resource consumption
+3. `kubectl top pods` used to identify affected workloads
+4. Kubernetes events and pod logs inspected
+5. Mitigation applied through scaling or workload adjustment
+
+This demonstrates how SRE teams diagnose and resolve production issues.
+
+---
+
+### Lessons Learned
+
+Key SRE practices demonstrated in this project:
+
+- Observability-driven troubleshooting
+- Infrastructure monitoring with Prometheus
+- CI/CD automation for deployments
+- Kubernetes workload management
+- Incident investigation using metrics and logs
+
+## Distributed Systems Failure Scenarios
+
+Modern distributed systems must be designed to tolerate failures.  
+This lab includes several simulated failure scenarios to demonstrate how Kubernetes and observability tools help diagnose and recover from incidents.
+
+### Scenario 1 — Pod Crash
+
+A pod failure was simulated to observe Kubernetes self-healing behavior.
+
+Expected system behavior:
+
+- Kubernetes automatically restarts the failed pod
+- ReplicaSet ensures the desired number of replicas are maintained
+- Pod restart events are visible via `kubectl describe pod`
+
+Investigation steps:
+
+1. Detect pod failure using `kubectl get pods`
+2. Inspect events using `kubectl describe pod`
+3. Verify restart behavior through Grafana dashboards
+
+---
+
+### Scenario 2 — CPU Spike
+
+A stress workload was deployed to generate abnormal CPU usage.
+
+Investigation workflow:
+
+1. Grafana dashboard detects CPU spike
+2. Prometheus metrics confirm resource saturation
+3. `kubectl top pods` identifies the high-CPU container
+4. Horizontal scaling or resource limits mitigate the issue
+
+This demonstrates how observability tools support **performance troubleshooting**.
+
+---
+
+### Scenario 3 — Deployment Failure
+
+A misconfigured deployment can lead to application downtime.
+
+Kubernetes protects against this using:
+
+- rolling updates
+- deployment revision history
+- automatic rollback
+
+Engineers can recover using:
+
+
+---
+
+### Scenario 4 — Node Failure
+
+If a Kubernetes node fails:
+
+- workloads are automatically rescheduled on healthy nodes
+- cluster state remains consistent through the control plane
+
+This self-healing behavior is a core property of Kubernetes reliability.
+
+---
+
+### Key Distributed System Principles Demonstrated
+
+This lab demonstrates several distributed system concepts:
+
+- Fault tolerance
+- Self-healing infrastructure
+- Observability-driven debugging
+- Horizontal scalability
+- Automated deployment pipelines
+
+
 # Skills Demonstrated
 
 Kubernetes cluster deployment  
