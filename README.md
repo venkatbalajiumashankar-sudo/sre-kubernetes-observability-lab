@@ -9,6 +9,19 @@
 
 Production-style **Site Reliability Engineering lab** demonstrating Kubernetes deployment, CI/CD automation, and observability using **Prometheus and Grafana**.
 
+## Table of Contents
+
+- Project Overview
+- Architecture
+- Infrastructure
+- Kubernetes Cluster
+- Monitoring Stack
+- CI/CD Pipeline
+- Screenshots
+- Incident Simulation
+- Skills Demonstrated
+- Author
+
 ## 🚀 Project Overview
 
 This project simulates a **real-world Site Reliability Engineering (SRE) environment** built on Kubernetes.
@@ -34,14 +47,14 @@ The lab demonstrates how infrastructure engineers deploy applications, monitor c
 ## 🛠 Tech Stack
 
 | Technology | Purpose |
-|-----------|--------|
-| Kubernetes (k3s) | Container orchestration |
-| Docker | Containerized applications |
+|------------|--------|
+| Kubernetes (K3s) | Container orchestration |
+| Docker | Containerization |
 | Prometheus | Metrics collection |
 | Grafana | Monitoring dashboards |
 | Jenkins | CI/CD automation |
 | Ubuntu Server | Infrastructure environment |
-| VirtualBox | Local virtualization |
+| VirtualBox | Virtualization platform |
 
 ---
 
