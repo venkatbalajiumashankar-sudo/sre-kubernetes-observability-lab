@@ -363,12 +363,36 @@ Output:
 1000 records sent, 98.49 records/sec, 131.67 ms avg latency
 ```
 
+### Prometheus Target — Kafka Exporter UP
+
+Prometheus successfully scraping kafka-exporter with **1/1 up** status:
+
+![Kafka Prometheus Target](screenshots/kafka_prometheus_target.png)
+
+---
+
+### Kafka Metrics in Prometheus Query
+
+Live `kafka_brokers` metric query confirming broker is online:
+
+![Kafka Prometheus Query](screenshots/kafka_prometheus_query.png)
+
+---
+
+### Kafka Broker Metric — Graph View
+
+`kafka_brokers = 1` plotted over time in Prometheus:
+
+![Kafka Prometheus Graph](screenshots/kafka_prometheus_graph.png)
+
+---
+
 ### Custom Grafana Dashboard
 
 A custom Grafana dashboard was built from scratch visualizing:
 - **Kafka Brokers Online** (Stat panel)
 - **Kafka Topic Partitions** (Stat panel)
-- **Messages Produced Over Time** (Time series)
+- **Messages Produced Over Time** (Time series — 3 partitions, 8000+ messages)
 
 ![Kafka Grafana Dashboard](screenshots/kafka_grafana_dashboard.png)
 
@@ -530,4 +554,3 @@ Arizona State University
 - Kubernetes Operations
 - Observability Systems
 - Distributed Streaming Systems
-vvv
