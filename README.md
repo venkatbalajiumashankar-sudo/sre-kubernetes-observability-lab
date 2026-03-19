@@ -69,7 +69,7 @@ The lab demonstrates how infrastructure engineers deploy applications, monitor c
 
 ## Architecture
 
-![Architecture](architecture/architecture.png)
+![Architecture](architecture/architecture1.png)
 
 > 📄 [Download Full Architecture Diagram (PDF)](architecture/architecture.pdf)
 
