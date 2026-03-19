@@ -1,10 +1,14 @@
-![Kubernetes](https://img.shields.io/badge/Kubernetes-K3s-blue)
-![Docker](https://img.shields.io/badge/Container-Docker-blue)
-![Prometheus](https://img.shields.io/badge/Monitoring-Prometheus-orange)
-![Grafana](https://img.shields.io/badge/Dashboard-Grafana-yellow)
-![Jenkins](https://img.shields.io/badge/CI/CD-Jenkins-red)
-![Kafka](https://img.shields.io/badge/Streaming-Apache%20Kafka-black)
+![Kubernetes](https://img.shields.io/badge/Kubernetes-K3s-326CE5)
+![Docker](https://img.shields.io/badge/Container-Docker-2496ED)
+![Prometheus](https://img.shields.io/badge/Monitoring-Prometheus-E6522C)
+![Grafana](https://img.shields.io/badge/Dashboard-Grafana-F46800)
+![Jenkins](https://img.shields.io/badge/CI%2FCD-Jenkins-D24939)
+![Kafka](https://img.shields.io/badge/Streaming-Apache%20Kafka-231F20)
+![Terraform](https://img.shields.io/badge/IaC-Terraform-7B42BC)
+![Helm](https://img.shields.io/badge/Package-Helm-0F1689)
+![ngrok](https://img.shields.io/badge/Tunnel-ngrok-1F1E37)
 ![Linux](https://img.shields.io/badge/OS-Ubuntu%2024.04-E95420)
+![VirtualBox](https://img.shields.io/badge/VM-VirtualBox-183A61)
 
 # SRE Kubernetes Observability Lab
 
@@ -69,7 +73,7 @@ The lab demonstrates how infrastructure engineers deploy applications, monitor c
 
 ## Architecture
 
-![Architecture](architecture/architecture1.png)
+![Architecture](architecture/architecture.png)
 
 > 📄 [Download Full Architecture Diagram (PDF)](architecture/architecture.pdf)
 
