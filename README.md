@@ -17,6 +17,7 @@ Production-style **Site Reliability Engineering lab** demonstrating Kubernetes d
 - [Kubernetes Cluster](#step-2--kubernetes-cluster-verification)
 - [Monitoring Stack](#observability-stack)
 - [Kafka Observability](#kafka-observability-integration)
+- [Terraform IaC](#terraform-infrastructure-as-code)
 - [CI/CD Pipeline](#step-8--jenkins-cicd-pipelines)
 - [Incident Simulation](#production-incident-simulation)
 - [Skills Demonstrated](#skills-demonstrated)
@@ -59,6 +60,7 @@ The lab demonstrates how infrastructure engineers deploy applications, monitor c
 | Prometheus | Metrics collection |
 | Grafana | Monitoring dashboards |
 | Helm | Kubernetes package management |
+| Terraform | Infrastructure as Code (IaC) |
 | Jenkins | CI/CD automation |
 | Ubuntu Server | Infrastructure environment |
 | VirtualBox | Virtualization platform |
@@ -68,6 +70,8 @@ The lab demonstrates how infrastructure engineers deploy applications, monitor c
 ## Architecture
 
 ![Architecture](architecture/architecture.png)
+
+> 📄 [Download Full Architecture Diagram (PDF)](architecture/architecture.pdf)
 
 This environment simulates a production infrastructure stack.
 
@@ -507,7 +511,135 @@ If the Kafka broker becomes unavailable:
 
 ---
 
+## Terraform Infrastructure as Code
+
+This lab uses **Terraform** to provision and manage Kubernetes resources as code, demonstrating the full IaC workflow used in production SRE environments.
+
+### Project Structure
+
+```
+terraform-lab/
+├── main.tf          # Provider configuration
+├── variables.tf     # Input variables
+├── outputs.tf       # Output values
+├── namespace.tf     # Kubernetes namespace
+├── deployment.tf    # Application deployment
+└── service.tf       # NodePort service
+```
+
+### Provider Configuration
+
+```hcl
+terraform {
+  required_providers {
+    kubernetes = {
+      source  = "hashicorp/kubernetes"
+      version = "~> 2.0"
+    }
+  }
+}
+
+provider "kubernetes" {
+  config_path = "~/.kube/config"
+}
+```
+
+### Variables
+
+```hcl
+variable "app_name"  { default = "sre-terraform-demo" }
+variable "namespace" { default = "terraform-demo" }
+variable "replicas"  { default = 2 }
+variable "image"     { default = "nginx:latest" }
+```
+
+### Terraform Workflow
+
+**Step 1 — Initialize:**
+```bash
+terraform init
+```
+
+**Step 2 — Plan (preview changes):**
+```bash
+terraform plan
+```
+Output:
+```
+Plan: 3 to add, 0 to change, 0 to destroy.
+```
+
+**Step 3 — Apply (provision infrastructure):**
+```bash
+terraform apply -auto-approve
+```
+Output:
+```
+Apply complete! Resources: 2 added, 1 changed, 0 destroyed.
+
+Outputs:
+app_url          = "http://192.168.56.102:30080"
+deployment_name  = "sre-terraform-demo"
+namespace        = "terraform-demo"
+service_nodeport = 30080
+```
+
+**Step 4 — Scale with a single variable (IaC power):**
+```bash
+terraform apply -var="replicas=3" -auto-approve
+```
+Output:
+```
+~ replicas = "2" -> "3"
+Apply complete! Resources: 0 added, 1 changed, 0 destroyed.
+```
+
+### Terraform State
+
+Terraform tracks all managed resources:
+```bash
+terraform state list
+
+kubernetes_deployment.app
+kubernetes_namespace.demo
+kubernetes_service.app
+```
+
+### Key IaC Concepts Demonstrated
+
+| Concept | Description |
+|---------|-------------|
+| Infrastructure as Code | All resources defined in `.tf` files |
+| Variable-driven config | Scale replicas, change images via `-var` |
+| State management | Terraform tracks resource state in `terraform.tfstate` |
+| Import existing resources | `terraform import` to adopt pre-existing resources |
+| Idempotency | `terraform plan` shows zero changes when state matches config |
+| Output values | Exposes app URL and port after apply |
+
+### Screenshots
+
+**Terraform Plan — 3 resources to provision:**
+
+![Terraform Plan](screenshots/terraform_plan.png)
+
+**Terraform Apply — resources created successfully:**
+
+![Terraform Apply](screenshots/terraform_apply_scale.png)
+
+**Terraform State — managed resources:**
+
+![Terraform State](screenshots/terraform_state.png)
+
+---
+
 ## Skills Demonstrated
+
+**Infrastructure as Code (Terraform)**
+- Kubernetes provider configuration
+- Resource provisioning (namespace, deployment, service)
+- Variable-driven scaling
+- State management and resource import
+- Plan → Apply → Destroy workflow
 
 **Kubernetes**
 - Cluster deployment and operations (K3s)
